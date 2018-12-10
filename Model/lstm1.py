@@ -20,6 +20,9 @@ def load_data():
 	#concat two data set
 	#data = pd.concat([bitcoin['Close'], tweet], axis=1)
 	data = bitcoin["Close"]
+	data = data.sort_index()
+	data.plot()
+	pyplot.show()
 	data.fillna(0, inplace = True)
 	print(data.head())
 	values = data.values
@@ -97,12 +100,19 @@ def predict(train_in, train_out, test_in, test_out):
 
 if __name__ == '__main__':
 	data = load_data().values
+	#pyplot.plot(data, label='full')
 
 	#split data
 	#we will use 20 days for training and 10 days for testing
 	n = 24*20
 	train = data[:n, :]
 	test = data[n:, :]
+	#pyplot.plot(train, label='train')
+	#pyplot.plot(test, label='test')
+
+	#pyplot.show()
+
+	print(train.shape, test.shape)
 
 
 	#splt the data into input and output and reshape them

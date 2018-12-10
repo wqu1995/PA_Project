@@ -3,8 +3,8 @@ from pandas import datetime
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.preprocessing import StandardScaler
-from keras.models import Sequential
-from keras.layers import Dense, LSTM
+# from keras.models import Sequential
+# from keras.layers import Dense, LSTM
 from matplotlib import pyplot
 from math import sqrt
 from sklearn.metrics import mean_squared_error
@@ -15,7 +15,8 @@ def load_data():
 	#load data
 	bitcoin = pd.read_csv('Data\\bitcoin.csv', header=0, parse_dates=[0], index_col=0, date_parser=lambda x : datetime.strptime(x,'%Y-%m-%d %I-%p'))
 	tweet = pd.read_csv('Data\\tweet1.csv', header=0, parse_dates=[0], index_col=0, date_parser=lambda x : datetime.strptime(x,'%Y-%m-%d %H:%M:%S'))
-	
+	bitcoin['Close'].plot()
+	pyplot.show()
 	#concat two data set
 	data = pd.concat([bitcoin['Close'], tweet], axis=1)
 	data.fillna(0, inplace = True)
@@ -112,4 +113,4 @@ if __name__ == '__main__':
 
 	print(train_input.shape, train_output.shape, test_input.shape, test_output.shape)
 	#create LSTM
-	predict(train_input, train_output, test_input, test_output)
+	#predict(train_input, train_output, test_input, test_output)
