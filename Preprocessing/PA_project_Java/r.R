@@ -1,0 +1,6 @@
+library("ggplot2")
+library("forecast")
+library("tseries")
+myData <- read.csv(file = "C:\\Users\\wqu\\Desktop\\new.csv", header = TRUE, sep=",")
+myData$Date <- as.POSIXct(myData$Date, format="%Y-%m-%d %I-%p")
+ggplot(myData, aes(Date, Close)) + geom_line(na.rm=TRUE)
